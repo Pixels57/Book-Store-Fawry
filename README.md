@@ -75,22 +75,7 @@ cd BookStore
 
 This starts the web server on `http://localhost:8080`
 
-#### 3. Run Tests
-```bash
-cd BookStore
-./mvnw test
-```
-
-Run specific test class:
-```bash
-./mvnw test -Dtest=QuantumBookstoreFullTest
-```
-
-#### 4. Build the Project
-```bash
-cd BookStore
-./mvnw clean install
-```
+Open this link to access the frontend `http://localhost:8080`
 
 ## 🧪 Testing
 

@@ -10,18 +10,22 @@ Welcome to the **Quantum Book Store** - a comprehensive online book management s
 - **Showcase/Demo Books**: Display-only books not available for purchase
 
 ### 🛒 Core Functionality
-- ✅ Add books to inventory with duplicate ISBN checking
-- ✅ Remove outdated books based on publication year
-- ✅ Purchase books with automatic stock management
-- ✅ Shipping service integration for paper books
-- ✅ Email service integration for ebooks
-- ✅ Comprehensive error handling and validation
+- Add books to inventory with duplicate ISBN checking
+- Remove outdated books based on publication year
+- Purchase books with automatic stock management
+- Shipping service integration for paper books
+- Email service integration for ebooks
+- Comprehensive error handling and validation
 
-### 🔧 System Design
-- **Extensible Architecture**: Easy to add new book types without modifying existing code
-- **Service Layer Pattern**: Clean separation of concerns
-- **Abstract Base Classes**: Polymorphic behavior for different book types
-- **Comprehensive Testing**: Full test suite with `QuantumBookstoreFullTest`
+### Photos for Demos
+<img width="1280" alt="Screen Shot 2025-07-08 at 10 09 43 PM 1" src="https://github.com/user-attachments/assets/e3316eb8-3085-4686-8dfe-8e62302e68dd" />
+
+<img width="1268" alt="Screen Shot 2025-07-08 at 10 25 39 PM" src="https://github.com/user-attachments/assets/efbbf251-8047-4c53-b03a-0a65ca31f5fc" />
+
+<img width="1261" alt="Screen Shot 2025-07-08 at 10 26 15 PM" src="https://github.com/user-attachments/assets/0f42f09d-12b1-4800-bd95-2e327a043334" />
+
+<img width="1126" alt="Screen Shot 2025-07-08 at 10 26 37 PM" src="https://github.com/user-attachments/assets/594f0030-85cf-42d3-a782-4e37e211636b" />
+
 
 ## 🏗️ Architecture
 
@@ -81,77 +85,7 @@ cd BookStore
 
 This starts the web server on `http://localhost:8080`
 
-#### 3. Run Tests
-```bash
-cd BookStore
-./mvnw test
-```
-
-Run specific test class:
-```bash
-./mvnw test -Dtest=QuantumBookstoreFullTest
-```
-
-#### 4. Build the Project
-```bash
-cd BookStore
-./mvnw clean install
-```
-
-## 📋 API Usage Examples
-
-### Book Management
-
-#### Add a Paper Book
-```java
-PaperBook book = new PaperBook("ISBN-001", "Java Programming", "Author Name", 2023, 49.99, 10);
-bookStore.addBook(book);
-```
-
-#### Add an EBook
-```java
-EBook ebook = new EBook("ISBN-002", "Digital Design", "Tech Author", 2023, 29.99, "PDF");
-bookStore.addBook(ebook);
-```
-
-#### Add a Showcase Book
-```java
-ShowcaseBook showcase = new ShowcaseBook("ISBN-003", "Future Tech", "Visionary", 2024);
-bookStore.addBook(showcase);
-```
-
-### Purchase Operations
-
-#### Buy a Paper Book
-```java
-double cost = bookStore.buyBook("ISBN-001", 2, "customer@email.com", "123 Main St");
-// Automatically reduces stock and initiates shipping
-```
-
-#### Buy an EBook
-```java
-double cost = bookStore.buyBook("ISBN-002", 1, "customer@email.com", "");
-// Automatically sends download link via email
-```
-
-### Inventory Management
-
-#### Remove Outdated Books
-```java
-List<Book> removed = bookStore.removeOutdatedBooks(10); // Remove books older than 10 years
-```
-
-#### Check for Duplicates
-```java
-// The system automatically prevents duplicate ISBNs
-bookStore.addBook(duplicateBook); // Will show warning and not add
-```
-
-#### Update Existing Books
-```java
-bookStore.updateBook(updatedBook);        // Update existing book
-bookStore.addOrUpdateBook(book);          // Add new or update existing
-```
+Open this link to access the frontend `http://localhost:8080`
 
 ## 🧪 Testing
 
@@ -244,23 +178,5 @@ Quantum book store - Sending ebook 'Spring Boot in Action' (PDF) to email: custo
 Quantum book store - Purchase completed. Total amount: $39.99
 Quantum book store - Total spent: $219.96
 ```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is created for educational purposes and demonstrates best practices in Java development and Spring Boot applications.
-
-## 👨‍💻 Author
-
-Created as a demonstration of object-oriented design principles, clean architecture, and modern Java development practices.
-
----
 
 **Quantum book store** - *Where every book finds its perfect reader* 📚✨ 

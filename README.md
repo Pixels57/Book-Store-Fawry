@@ -17,6 +17,16 @@ Welcome to the **Quantum Book Store** - a comprehensive online book management s
 - Email service integration for ebooks
 - Comprehensive error handling and validation
 
+### Photos for Demos
+<img width="1280" alt="Screen Shot 2025-07-08 at 10 09 43 PM 1" src="https://github.com/user-attachments/assets/e3316eb8-3085-4686-8dfe-8e62302e68dd" />
+
+<img width="1268" alt="Screen Shot 2025-07-08 at 10 25 39 PM" src="https://github.com/user-attachments/assets/efbbf251-8047-4c53-b03a-0a65ca31f5fc" />
+
+<img width="1261" alt="Screen Shot 2025-07-08 at 10 26 15 PM" src="https://github.com/user-attachments/assets/0f42f09d-12b1-4800-bd95-2e327a043334" />
+
+<img width="1126" alt="Screen Shot 2025-07-08 at 10 26 37 PM" src="https://github.com/user-attachments/assets/594f0030-85cf-42d3-a782-4e37e211636b" />
+
+
 ## 🏗️ Architecture
 
 ```

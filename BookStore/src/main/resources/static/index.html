@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Quantum Book Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">
+                <i class="fas fa-atom"></i>
+                Quantum Book Store
+            </h1>
+            <nav class="nav">
+                <button class="nav-btn active" data-tab="browse">
+                    <i class="fas fa-book"></i> Browse Books
+                </button>
+                <button class="nav-btn" data-tab="add">
+                    <i class="fas fa-plus"></i> Add Book
+                </button>
+                <button class="nav-btn" data-tab="manage">
+                    <i class="fas fa-cogs"></i> Manage
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- Browse Books Tab -->
+            <section id="browse" class="tab-content active">
+                <div class="section-header">
+                    <h2><i class="fas fa-book-open"></i> Book Catalog</h2>
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Search books by title, author, or ISBN...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">All Books</button>
+                    <button class="filter-btn" data-filter="Paper Book">Paper Books</button>
+                    <button class="filter-btn" data-filter="EBook">E-Books</button>
+                    <button class="filter-btn" data-filter="Showcase/Demo Book">Showcase</button>
+                </div>
+
+                <div id="booksGrid" class="books-grid">
+                    <!-- Books will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Add Book Tab -->
+            <section id="add" class="tab-content">
+                <div class="section-header">
+                    <h2><i class="fas fa-plus-circle"></i> Add New Book</h2>
+                </div>
+
+                <div class="book-type-selector">
+                    <button class="book-type-btn active" data-type="paper">
+                        <i class="fas fa-book"></i>
+                        Paper Book
+                    </button>
+                    <button class="book-type-btn" data-type="ebook">
+                        <i class="fas fa-tablet-alt"></i>
+                        E-Book
+                    </button>
+                    <button class="book-type-btn" data-type="showcase">
+                        <i class="fas fa-eye"></i>
+                        Showcase Book
+                    </button>
+                </div>
+
+                <form id="addBookForm" class="add-book-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="isbn">ISBN</label>
+                            <input type="text" id="isbn" name="isbn" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" id="title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="author">Author</label>
+                            <input type="text" id="author" name="author" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="year">Year Published</label>
+                            <input type="number" id="year" name="yearPublished" min="1000" max="2024" required>
+                        </div>
+                        <div class="form-group price-group">
+                            <label for="price">Price ($)</label>
+                            <input type="number" id="price" name="price" step="0.01" min="0">
+                        </div>
+                        <div class="form-group stock-group">
+                            <label for="stock">Stock</label>
+                            <input type="number" id="stock" name="stock" min="0">
+                        </div>
+                        <div class="form-group filetype-group" style="display: none;">
+                            <label for="fileType">File Type</label>
+                            <select id="fileType" name="fileType">
+                                <option value="PDF">PDF</option>
+                                <option value="EPUB">EPUB</option>
+                                <option value="MOBI">MOBI</option>
+                                <option value="TXT">TXT</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-plus"></i> Add Book
+                    </button>
+                </form>
+            </section>
+
+            <!-- Manage Tab -->
+            <section id="manage" class="tab-content">
+                <div class="section-header">
+                    <h2><i class="fas fa-cogs"></i> Inventory Management</h2>
+                </div>
+
+                <div class="management-actions">
+                    <div class="action-card">
+                        <h3><i class="fas fa-trash-alt"></i> Remove Outdated Books</h3>
+                        <p>Remove books older than a specified number of years</p>
+                        <div class="action-form">
+                            <input type="number" id="yearsThreshold" placeholder="Years threshold" min="1" value="10">
+                            <button onclick="removeOutdatedBooks()" class="action-btn danger">
+                                <i class="fas fa-trash"></i> Remove Outdated
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="action-card">
+                        <h3><i class="fas fa-chart-bar"></i> Inventory Statistics</h3>
+                        <div id="inventoryStats" class="stats">
+                            <!-- Stats will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Purchase Modal -->
+    <div id="purchaseModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2><i class="fas fa-shopping-cart"></i> Purchase Book</h2>
+            <form id="purchaseForm">
+                <input type="hidden" id="purchaseIsbn">
+                <div id="bookDetails" class="book-details"></div>
+                
+                <div class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group address-group">
+                    <label for="address">Shipping Address</label>
+                    <textarea id="address" name="address" rows="3" placeholder="Enter your shipping address..."></textarea>
+                </div>
+                
+                <div class="total-amount">
+                    <strong>Total: $<span id="totalAmount">0.00</span></strong>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-credit-card"></i> Complete Purchase
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <span id="notificationMessage"></span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
